@@ -1,0 +1,19 @@
+.Button {
+  button {
+    display: inline-block;
+    padding: 15px 20px;
+    margin-bottom: 2rem ;
+    border-radius: 10px;
+    background-color: rgba(102, 175, 233, 1);
+    font-size: 20px;
+    color: white;
+    border: none;
+  }
+  button:hover {
+    background-color: rgba(102, 175, 233, 0.6);
+  }
+
+  button:disabled {
+    background-color: rgb(100, 100, 100);
+  }
+}
