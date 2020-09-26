@@ -54,11 +54,19 @@ const useStyles = makeStyles({
         width: '50%',
         alignItems: 'center',
     },
+    header:{
+        fontSize:'2.5rem',
+        paddingTop:'1rem',
+        paddingLeft:'1rem',
+        color:'rgb(36 100 236)',
+        textAlign:'left',
+    },
     container: {
         maxHeight: '50rem',
     },
     tableHead: {
         fontWeight: 300,
+        backgroundColor:'white',
     },
     tableCell: {
         fontSize: '1rem',
@@ -95,6 +103,7 @@ export default function StickyHeadTable() {
 
     return (
         <Paper className={classes.root} elevation={0}>
+            <h1 className={classes.header}>Median Price</h1>
             <TableContainer className={classes.container}>
                 <Table stickyHeader size="medium" aria-label="sticky table">
                     <TableHead className={classes.tableHead}>
