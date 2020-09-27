@@ -3,7 +3,7 @@ import Field from "./Field.js";
 import Button from "./Button.js";
 import classes from "./ContactUs.module.scss";
 
-class ContactUs extends Component {
+class ContactUsClass extends Component {
   constructor() {
     super();
     this.state = {
@@ -171,7 +171,7 @@ class ContactUs extends Component {
   render() {
     return (
       <div className={classes.Wrapper}>
-        <h2>Contact Us</h2>
+        <h2>Contact Us (Class)</h2>
 
         <div className={classes.Form}>
           <Field
@@ -244,4 +244,4 @@ class ContactUs extends Component {
   }
 }
 
-export default ContactUs;
+export default ContactUsClass;

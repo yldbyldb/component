@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./App.module.scss";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import ContactUs from "./pages/ContactUs/ContactUs";
+import ContactUsClass from "./pages/ContactUs/ContactUs";
 import MedianPrice from "./pages/home/MedianPrice";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <nav className={classes.Nav}>
           <ul>
             <li>
-              <Link to="/ContactUs">Contact Us</Link>
+              <Link to="/ContactUsClass">Contact Us (Class)</Link>
             </li>
             <li>
               <Link to="/MedianPrice">Median Price</Link>
@@ -19,7 +19,7 @@ function App() {
           </ul>
         </nav>
         <div>
-          <Route path="/ContactUs" component={ContactUs}></Route>
+          <Route path="/ContactUsClass" component={ContactUsClass}></Route>
           <Route path="/MedianPrice" component={MedianPrice}></Route>
         </div>
       </BrowserRouter>
