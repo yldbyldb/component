@@ -1,35 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classes from './Field.module.scss';
+import classes from "./Field.module.scss";
 
 const Field = (props) => (
-  props.isError ?
-  <div className={classes.Red}>
+  <div className={props.isError ? classes.Red : classes.Nor}>
     <input
       type="text"
-      size='40'
+      size="40"
       onChange={props.onChange}
       value={props.value}
       onBlur={props.onBlur}
-      // errorText={props.errorText}
       onClick={props.onClick}
-      placeholder={props.error}
+      placeholder={props.isError ? props.error : props.label}
     />
   </div>
-    :
-    <div className={classes.Nor}>
-    <input
-      type="text"
-      size='40'
-      onChange={props.onChange}
-      value={props.value}
-      onBlur={props.onBlur}
-      // errorText={props.errorText}
-      onClick={props.onClick}
-      placeholder={props.label}
-    />
-    </div>
-  );
+);
 
 Field.propTypes = {
   label: PropTypes.string.isRequired,

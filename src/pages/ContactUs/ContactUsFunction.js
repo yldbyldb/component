@@ -131,12 +131,6 @@ const ContactUsFunction = () => {
           error={firstNameErr}
           isError={isFirstNameErr}
           onClick={() =>
-            //   {if (firstNameErr){
-            //     setFirstName("");
-            //     setIsClicked(false);
-            //     setFirstNameErr("");
-            //     setIsFirstNameErr(false);
-            //   }}
             errHandler(
               firstNameErr,
               setFirstName,
@@ -174,41 +168,17 @@ const ContactUsFunction = () => {
           }
         />
 
-        {isMessageErr ? (
-          <div className={classes.Red}>
-            <textarea
-              onChange={(e) => setMessage(e.target.value)}
-              value={isMessageErr ? "" : message}
-              onBlur={validMessage}
-              onClick={() =>
-                errHandler(
-                  messageErr,
-                  setMessage,
-                  setMessageErr,
-                  setIsMessageErr
-                )
-              }
-              placeholder={messageErr}
-            ></textarea>
-          </div>
-        ) : (
-          <div className={classes.Blu}>
-            <textarea
-              onChange={(e) => setMessage(e.target.value)}
-              value={isMessageErr ? "" : message}
-              onBlur={validMessage}
-              onClick={() =>
-                errHandler(
-                  messageErr,
-                  setMessage,
-                  setMessageErr,
-                  setIsMessageErr
-                )
-              }
-              placeholder={"Your Message Please"}
-            ></textarea>
-          </div>
-        )}
+        <div className={isMessageErr ? classes.Red : classes.Blu}>
+          <textarea
+            onChange={(e) => setMessage(e.target.value)}
+            value={isMessageErr ? "" : message}
+            onBlur={validMessage}
+            onClick={() =>
+              errHandler(messageErr, setMessage, setMessageErr, setIsMessageErr)
+            }
+            placeholder={isMessageErr ? messageErr:"Your Message Please"}
+          ></textarea>
+        </div>
       </div>
 
       <Button

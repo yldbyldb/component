@@ -207,31 +207,21 @@ class ContactUsClass extends Component {
             onClick={() => this.errHandler("email", "emailErr", "isEmailErr")}
           />
 
-          {this.state.isMessageErr ? (
-            <div className={classes.Red}>
-              <textarea
-                onChange={(e) => this.updateField("message", e.target.value)}
-                value={this.state.isMessageErr ? "" : this.state.message}
-                onBlur={this.validMessage}
-                onClick={() =>
-                  this.errHandler("message", "messageErr", "isMessageErr")
-                }
-                placeholder={this.state.messageErr}
-              ></textarea>
-            </div>
-          ) : (
-            <div className={classes.Blu}>
-              <textarea
-                onChange={(e) => this.updateField("message", e.target.value)}
-                value={this.state.isMessageErr ? "" : this.state.message}
-                onBlur={this.validMessage}
-                onClick={() =>
-                  this.errHandler("message", "messageErr", "isMessageErr")
-                }
-                placeholder={"Your Message Please"}
-              ></textarea>
-            </div>
-          )}
+          <div className={this.state.isMessageErr ? classes.Red : classes.Blu}>
+            <textarea
+              onChange={(e) => this.updateField("message", e.target.value)}
+              value={this.state.isMessageErr ? "" : this.state.message}
+              onBlur={this.validMessage}
+              onClick={() =>
+                this.errHandler("message", "messageErr", "isMessageErr")
+              }
+              placeholder={
+                this.state.isMessageErr
+                  ? this.state.messageErr
+                  : "Your Message Please"
+              }
+            ></textarea>
+          </div>
         </div>
 
         <Button
