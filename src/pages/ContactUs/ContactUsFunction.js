@@ -28,10 +28,10 @@ const ContactUsFunction = () => {
 
   const errHandler = (fieldErr, setField, setFieldErr, setIsFieldErr) => {
     if (fieldErr) {
-      [setField]("");
+      setField("");
       setIsClicked(false);
-      [setFieldErr]("");
-      [setIsFieldErr](false);
+      setFieldErr("");
+      setIsFieldErr(false);
     }
   };
 
@@ -139,9 +139,9 @@ const ContactUsFunction = () => {
             //   }}
             errHandler(
               firstNameErr,
-              "setFirstName",
-              "setFirstNameErr",
-              "setIsFirstNameErr"
+              setFirstName,
+              setFirstNameErr,
+              setIsFirstNameErr
             )
           }
         />
@@ -155,9 +155,9 @@ const ContactUsFunction = () => {
           onClick={() =>
             errHandler(
               lastNameErr,
-              "setLastName",
-              "setLastNameErr",
-              "setIsLastNameErr"
+              setLastName,
+              setLastNameErr,
+              setIsLastNameErr
             )
           }
         />
@@ -170,7 +170,7 @@ const ContactUsFunction = () => {
           error={emailErr}
           isError={isEmailErr}
           onClick={() =>
-            errHandler(emailErr, "setEmail", "setEmailErr", "setIsEmailErr")
+            errHandler(emailErr, setEmail, setEmailErr, setIsEmailErr)
           }
         />
 
@@ -183,9 +183,9 @@ const ContactUsFunction = () => {
               onClick={() =>
                 errHandler(
                   messageErr,
-                  "setMessage",
-                  "setMessageErr",
-                  "setIsMessageErr"
+                  setMessage,
+                  setMessageErr,
+                  setIsMessageErr
                 )
               }
               placeholder={messageErr}
@@ -200,9 +200,9 @@ const ContactUsFunction = () => {
               onClick={() =>
                 errHandler(
                   messageErr,
-                  "setMessage",
-                  "setMessageErr",
-                  "setIsMessageErr"
+                  setMessage,
+                  setMessageErr,
+                  setIsMessageErr
                 )
               }
               placeholder={"Your Message Please"}
