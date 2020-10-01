@@ -13,6 +13,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
+import { createS, rst, useRState } from 'rt-state';
 
 const columns = [
     { id: 'ranking', label: 'Ranking', minWidth: '5rem' },
@@ -53,21 +54,21 @@ const useStyles = makeStyles({
     root: {
         width: '50%',
         alignItems: 'center',
-        margin:'0 auto',
+        margin: '0 auto',
     },
-    header:{
-        fontSize:'2.5rem',
-        paddingTop:'1rem',
-        paddingLeft:'1rem',
-        color:'rgb(36 100 236)',
-        textAlign:'left',
+    header: {
+        fontSize: '2.5rem',
+        paddingTop: '1rem',
+        paddingLeft: '1rem',
+        color: 'rgb(36 100 236)',
+        textAlign: 'left',
     },
     container: {
         maxHeight: '50rem',
     },
     tableHead: {
         fontWeight: 300,
-        backgroundColor:'white',
+        backgroundColor: 'white',
     },
     tableCell: {
         fontSize: '1rem',
@@ -77,34 +78,35 @@ const useStyles = makeStyles({
     // },
 });
 
-export default function StickyHeadTable() {
+const MedianPrice = createS(() => {
     const classes = useStyles();
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [isMore, setMore] = useState(false);
+    const data = useRState({ page: 0, rowsPerPage: 10, isMore: false });
+    // const [page, setPage] = useState(0);
+    // const [rowsPerPage, setRowsPerPage] = useState(10);
+    // const [isMore, setMore] = useState(false);
 
     const handleChangePage = (event: any, newPage: number) => {
-        setPage(newPage);
+        data.page = newPage;
     };
 
     const handleChangeRowsPerPage = (event: any) => {
-        setRowsPerPage(+event.target.value);
-        setPage(0);
+        data.rowsPerPage = event.target.value;
+        data.page = 0;
     };
 
     const handleChangeMore = () => {
-        setMore(false);
-        setPage(0);
+        data.isMore=false;
+        data.page = 0;
     };
 
     const handleChangeLess = () => {
-        setMore(true);
-        setPage(0);
+        data.isMore = true;
+        data.page = 0;
     };
 
     return (
         <Paper className={classes.root} elevation={0}>
-            <h1 className={classes.header}>Median Price</h1>
+            <h1 className={classes.header}>Median Price Rst</h1>
             <TableContainer className={classes.container}>
                 <Table stickyHeader size="medium" aria-label="sticky table">
                     <TableHead className={classes.tableHead}>
@@ -121,8 +123,8 @@ export default function StickyHeadTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {(isMore
-                            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        {(data.isMore
+                            ? rows.slice(data.page * data.rowsPerPage, data.page * data.rowsPerPage + data.rowsPerPage)
                             : rows.slice(0, 7)
                         ).map((row: any) => {
                             return (
@@ -146,14 +148,14 @@ export default function StickyHeadTable() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {isMore ? (
+            {data.isMore ? (
                 <>
                     <TablePagination
                         rowsPerPageOptions={[10, 25, 100]}
                         component="div"
                         count={rows.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
+                        rowsPerPage={data.rowsPerPage}
+                        page={data.page}
                         onChangePage={handleChangePage}
                         onChangeRowsPerPage={handleChangeRowsPerPage}
                     />
@@ -165,15 +167,16 @@ export default function StickyHeadTable() {
                     </Box>
                 </>
             ) : (
-                <>
-                    <Box textAlign="center">
-                        <Button variant="text" color="primary" size="large" onClick={handleChangeLess}>
-                            Show more
+                    <>
+                        <Box textAlign="center">
+                            <Button variant="text" color="primary" size="large" onClick={handleChangeLess}>
+                                Show more
                             <ArrowDropDownIcon />
-                        </Button>
-                    </Box>
-                </>
-            )}
+                            </Button>
+                        </Box>
+                    </>
+                )}
         </Paper>
     );
-}
+});
+export default MedianPrice;

@@ -16,6 +16,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "rt-state": "0.0.68",
     "typescript": "^4.0.3",
     "yup": "^0.29.3"
   },

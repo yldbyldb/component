@@ -6,6 +6,7 @@ import ContactUsFunction from "./pages/ContactUs/ContactUsFunction";
 import ContactUsRst from "./pages/ContactUs/ContactUsRst";
 import ContactUsFormik from "./pages/ContactUs/ContactUsFormik";
 import MedianPrice from "./pages/home/MedianPrice";
+import MedianPriceRst from "./pages/home/MedianPriceRst";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
             <li>
               <Link to="/MedianPrice">Median Price</Link>
             </li>
+            <li>
+              <Link to="/MedianPriceRst">Median Price Rst</Link>
+            </li>
           </ul>
         </nav>
         <div>
@@ -36,6 +40,7 @@ function App() {
           <Route path="/ContactUsRst" component={ContactUsRst}></Route>
           <Route path="/ContactUsFormik" component={ContactUsFormik}></Route>
           <Route path="/MedianPrice" component={MedianPrice}></Route>
+          <Route path="/MedianPriceRst" component={MedianPriceRst}></Route>
         </div>
       </BrowserRouter>
     </div>
