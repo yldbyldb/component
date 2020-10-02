@@ -95,7 +95,7 @@ const MedianPrice = createS(() => {
     };
 
     const handleChangeMore = () => {
-        data.isMore=false;
+        data.isMore = false;
         data.page = 0;
     };
 

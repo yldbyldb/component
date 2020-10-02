@@ -3,7 +3,7 @@ import Field from "./Field.js";
 import Button from "./Button.js";
 import classes from "./ContactUs.module.scss";
 
-const ContactUsFunction = () => {
+const ContactUsFunction1 = () => {
   const [firstName, setFirstName] = useState("");
   const [isFirstNameErr, setIsFirstNameErr] = useState(false);
   const [firstNameErr, setFirstNameErr] = useState("");
@@ -120,7 +120,7 @@ const ContactUsFunction = () => {
 
   return (
     <div className={classes.Wrapper}>
-      <h2>Contact Us (Function)</h2>
+      <h2>Contact Us (Function 1)</h2>
 
       <div className={classes.Form}>
         <Field
@@ -190,4 +190,4 @@ const ContactUsFunction = () => {
   );
 };
 
-export default ContactUsFunction;
+export default ContactUsFunction1;

@@ -2,7 +2,8 @@ import React from "react";
 import classes from "./App.module.scss";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import ContactUsClass from "./pages/ContactUs/ContactUsClass";
-import ContactUsFunction from "./pages/ContactUs/ContactUsFunction";
+import ContactUsFunction1 from "./pages/ContactUs/ContactUsFunction1";
+import ContactUsFunction2 from "./pages/ContactUs/ContactUsFunction2";
 import ContactUsRst from "./pages/ContactUs/ContactUsRst";
 import ContactUsFormik from "./pages/ContactUs/ContactUsFormik";
 import MedianPrice from "./pages/home/MedianPrice";
@@ -18,7 +19,10 @@ function App() {
               <Link to="/ContactUsClass">Contact Us (Class)</Link>
             </li>
             <li>
-              <Link to="/ContactUsFunction">Contact Us (Function)</Link>
+              <Link to="/ContactUsFunction1">Contact Us (Function 1)</Link>
+            </li>
+            <li>
+              <Link to="/ContactUsFunction2">Contact Us (Function 2)</Link>
             </li>
             <li>
               <Link to="/ContactUsRst">Contact Us (Rst)</Link>
@@ -36,7 +40,8 @@ function App() {
         </nav>
         <div>
           <Route path="/ContactUsClass" component={ContactUsClass}></Route>
-          <Route path="/ContactUsFunction" component={ContactUsFunction}></Route>
+          <Route path="/ContactUsFunction1" component={ContactUsFunction1}></Route>
+          <Route path="/ContactUsFunction2" component={ContactUsFunction2}></Route>
           <Route path="/ContactUsRst" component={ContactUsRst}></Route>
           <Route path="/ContactUsFormik" component={ContactUsFormik}></Route>
           <Route path="/MedianPrice" component={MedianPrice}></Route>
