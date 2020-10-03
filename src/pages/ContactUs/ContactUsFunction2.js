@@ -33,10 +33,12 @@ const ContactUsFunction2 = () => {
     }
   };
 
-  const onChangeHandler = (e, setField) => {
+  const onChangeHandler = (e, field, setField) => {
     setField({
+      ...field,
       item: e.target.value,
     });
+    console.log(e.target.value);
   };
 
   const validFirstName = () => {
@@ -47,6 +49,7 @@ const ContactUsFunction2 = () => {
         errMsg: "Please enter your first name.",
       });
     }
+    console.log(firstName.isErr);
   };
   const validLastName = () => {
     if (lastName.item.trim() === "" || lastName.item.length < 2) {
@@ -121,7 +124,7 @@ const ContactUsFunction2 = () => {
       email.item !== "" &&
       message.item !== ""
     ) {
-      window.location.href = `mailto:#?subject=Interested%20Client&body=${this.state.message}`;
+      window.location.href = `mailto:#?subject=Interested%20Client&body=${message}`;
     }
     if (firstName.item === "") {
       setFirstName({
@@ -167,7 +170,7 @@ const ContactUsFunction2 = () => {
       <div className={classes.Form}>
         <Field
           label="First Name"
-          onChange={(e) => onChangeHandler(e, setFirstName)}
+          onChange={(e) => onChangeHandler(e, firstName, setFirstName)}
           value={firstName.isErr ? "" : firstName.item}
           onBlur={validFirstName}
           error={firstName.errMsg}
@@ -176,7 +179,7 @@ const ContactUsFunction2 = () => {
         />
         <Field
           label="Last Name"
-          onChange={(e) => onChangeHandler(e, setLastName)}
+          onChange={(e) => onChangeHandler(e, lastName, setLastName)}
           value={lastName.isErr ? "" : lastName.item}
           onBlur={validLastName}
           error={lastName.errMsg}
@@ -186,7 +189,7 @@ const ContactUsFunction2 = () => {
 
         <Field
           label="Email"
-          onChange={(e) => onChangeHandler(e, setEmail)}
+          onChange={(e) => onChangeHandler(e, email, setEmail)}
           value={email.isErr ? "" : email.item}
           onBlur={validEmail}
           error={email.errMsg}
@@ -196,7 +199,7 @@ const ContactUsFunction2 = () => {
 
         <div className={message.isErr ? classes.Red : classes.Blu}>
           <textarea
-            onChange={(e) => onChangeHandler(e, setMessage)}
+            onChange={(e) => onChangeHandler(e, message, setMessage)}
             value={message.isErr ? "" : message.item}
             onBlur={validMessage}
             onClick={() => errHandler(message, setMessage)}
@@ -205,10 +208,7 @@ const ContactUsFunction2 = () => {
         </div>
       </div>
 
-      <Button
-        onClick={onSubmit}
-        isClicked={isClicked}
-      />
+      <Button onClick={onSubmit} isClicked={isClicked} />
     </div>
   );
 };

@@ -91,7 +91,7 @@ const ContactUsFunction1 = () => {
       email !== "" &&
       message !== ""
     ) {
-      window.location.href = `mailto:#?subject=Interested%20Client&body=${this.state.message}`;
+      window.location.href = `mailto:#?subject=Interested%20Client&body=${message}`;
     }
     if (firstName === "") {
       setIsFirstNameErr(true);
@@ -113,9 +113,10 @@ const ContactUsFunction1 = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    validAll();
     setIsClicked(true);
     console.log(isClicked);
-    validAll();
+    
   };
 
   return (
