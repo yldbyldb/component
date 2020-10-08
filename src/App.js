@@ -9,6 +9,7 @@ import ContactUsFormik from "./pages/ForHomeonMui/ContactUs/ContactUsFormik";
 import MedianPrice from "./pages/ForHomeonMui/home/MedianPrice";
 import {MedianPriceRst} from "./pages/ForHomeonMui/home/MedianPriceRst";
 import MapSelector from "./pages/ForHomeonMui/MapSelector/MapSelector";
+import PriceRange from "./pages/ForHomeonMui/PriceRange/PriceRange";
 
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
             <li>
               <Link to="/MapSelector">Map Selector</Link>
             </li>
+            <li>
+              <Link to="/PriceRange">Price Range</Link>
+            </li>
           </ul>
         </nav>
         <div>
@@ -52,6 +56,7 @@ function App() {
           <Route path="/MedianPrice" component={MedianPrice}></Route>
           <Route path="/MedianPriceRst" component={MedianPriceRst}></Route>
           <Route path="/MapSelector" component={MapSelector}></Route>
+          <Route path="/PriceRange" component={PriceRange}></Route>
         </div>
       </BrowserRouter>
     </div>

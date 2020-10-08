@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
         },
         label:{
-            margin:'0 0 0 1rem'
+            margin:'0 0 0 1rem',
+            justifyContent: 'space-between',
         }
     }),
 );

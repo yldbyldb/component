@@ -71,10 +71,8 @@ const useStyles = makeStyles({
     },
     tableCell: {
         fontSize: '1rem',
+        // border:'none'
     },
-    // button: {
-    //     alignItems: 'center'
-    // },
 });
 
 export default function StickyHeadTable() {
