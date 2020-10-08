@@ -1,13 +1,15 @@
 import React from "react";
 import classes from "./App.module.scss";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import ContactUsClass from "./pages/ContactUs/ContactUsClass";
-import ContactUsFunction1 from "./pages/ContactUs/ContactUsFunction1";
-import ContactUsFunction2 from "./pages/ContactUs/ContactUsFunction2";
-import ContactUsRst from "./pages/ContactUs/ContactUsRst";
-import ContactUsFormik from "./pages/ContactUs/ContactUsFormik";
-import MedianPrice from "./pages/home/MedianPrice";
-import MedianPriceRst from "./pages/home/MedianPriceRst";
+import ContactUsClass from "./pages/ForHomeonMui/ContactUs/ContactUsClass";
+import ContactUsFunction1 from "./pages/ForHomeonMui/ContactUs/ContactUsFunction1";
+import ContactUsFunction2 from "./pages/ForHomeonMui/ContactUs/ContactUsFunction2";
+import ContactUsRst from "./pages/ForHomeonMui/ContactUs/ContactUsRst";
+import ContactUsFormik from "./pages/ForHomeonMui/ContactUs/ContactUsFormik";
+import MedianPrice from "./pages/ForHomeonMui/home/MedianPrice";
+import {MedianPriceRst} from "./pages/ForHomeonMui/home/MedianPriceRst";
+import MapSelector from "./pages/ForHomeonMui/MapSelector/MapSelector";
+
 
 function App() {
   return (
@@ -36,6 +38,9 @@ function App() {
             <li>
               <Link to="/MedianPriceRst">Median Price Rst</Link>
             </li>
+            <li>
+              <Link to="/MapSelector">Map Selector</Link>
+            </li>
           </ul>
         </nav>
         <div>
@@ -46,6 +51,7 @@ function App() {
           <Route path="/ContactUsFormik" component={ContactUsFormik}></Route>
           <Route path="/MedianPrice" component={MedianPrice}></Route>
           <Route path="/MedianPriceRst" component={MedianPriceRst}></Route>
+          <Route path="/MapSelector" component={MapSelector}></Route>
         </div>
       </BrowserRouter>
     </div>

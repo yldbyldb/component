@@ -48,7 +48,7 @@ const ContactUsRst = createS(() => {
     field.item = e.target.value;
     field.isErr = false;
     field.errMsg = "";
-    console.log(field.item.length);
+    console.log(e.target.value.length);
   };
 
   const validFirstName = () => {
@@ -56,7 +56,7 @@ const ContactUsRst = createS(() => {
       data.firstName.item = "";
       data.firstName.isErr = true;
 	  data.firstName.errMsg = "Please enter your first name.";
-	  console.log(data.firstName.item.length);
+	  console.log(data.firstName.errMsg);
     }
   };
   const validLastName = () => {
@@ -158,6 +158,7 @@ const ContactUsRst = createS(() => {
       <div className={classes.Form}>
         <Field
           label="First Name"
+        //   onChange={(e) => onChangeHandler(e, data.firstName)}
           onChange={(e) => onChangeHandler(e, data.firstName)}
           value={data.firstName.isErr ? "" : data.firstName.item}
           onBlur={validFirstName}
