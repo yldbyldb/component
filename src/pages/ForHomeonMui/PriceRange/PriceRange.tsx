@@ -17,24 +17,41 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: '2rem 0',
         },
         paper: {
-            marginRight: theme.spacing(0),
+            margincenter: theme.spacing(0),
             borderRadius: '1rem',
         },
         table: {
             minWidth: 250,
-            padding:'1rem 1rem',
-            margin:'1rem 0'
+            padding: '1rem 1rem',
+            margin: '1rem 1rem'
         },
-        tableCell: { border: 'none' }
+        tableCell: {
+            border: 'none',
+            padding: '1rem 0.5rem',
+            '& div': {
+                display: 'inline-block',
+                backgroundColor: 'rgb(219,242,253)',
+                width: '2.5rem',
+                height: '2.5rem',
+                borderRadius: '0.5rem',
+                position: 'relative',
+                '& span': {
+                    position: 'relative',
+                    top: '0.5rem',
+                    color: 'white',
+                }
+            }
+        },
     }));
 
 
 
 //These numbers come from database, which are the number of suburb in certain price range.
 const areaItem = [51, 11, 1, 22, 53];
-const priceRangeItem = ['价格分档1', '价格分档2', '价格分档3', '价格分档4', '价格分档5']
+const priceRangeItem = ['价格分档1', '价格分档2', '价格分档3', '价格分档4', '价格分档5'];
+const colorItem = ['rgb(219,242,253)', 'rgb(129,209,246)', 'rgb(85,152,214)', 'rgb(53,101,169)', 'rgb(36,82,147)']
 
-const rows = priceRangeItem.map((price: string, i: number) => ({ price, area: areaItem[i] }));
+const rows = priceRangeItem.map((price: string, i: number) => ({ price, area: areaItem[i], color: colorItem[i] }));
 console.log(rows);
 
 export default function BasicTable() {
@@ -55,7 +72,9 @@ export default function BasicTable() {
                             {rows.map((row) => (
                                 <TableRow key={row.area}>
                                     <TableCell className={classes.tableCell} align="center" component="th" scope="row">
-                                        {row.area}
+                                        <div style={{backgroundColor:`${row.color}`}}>
+                                            <span>{row.area}</span>
+                                        </div>
                                     </TableCell>
                                     <TableCell className={classes.tableCell} align="center">{row.price}</TableCell>
                                 </TableRow>
