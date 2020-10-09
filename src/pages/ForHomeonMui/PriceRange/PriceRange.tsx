@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
             margin: '2rem 0',
         },
         paper: {
-            margincenter: theme.spacing(0),
+            marginRight: theme.spacing(0),
             borderRadius: '1rem',
         },
         table: {
