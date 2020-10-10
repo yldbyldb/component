@@ -49,12 +49,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function SimplePopover() {
+export default function MapSelectorHook() {
     const classes = useStyles();
 
     const [anchorElLandmark, setAnchorElLandmark] = React.useState<HTMLElement | null>(null);
     function handleClickLandmark(event: React.MouseEvent<HTMLElement, MouseEvent>) {
         setAnchorElLandmark(event.currentTarget);
+        console.log(event.currentTarget);
     }
     function handleCloseLandmark() {
         setAnchorElLandmark(null);
@@ -72,7 +73,7 @@ export default function SimplePopover() {
     }
     const openAddress = Boolean(anchorElAddress);
     const idAddress = openAddress ? 'simple-popover' : undefined;
-
+    console.log(idLandmark);
 
 
     return (
@@ -101,7 +102,7 @@ export default function SimplePopover() {
                         }}
                     >
                         <Landmark />
-                        
+
                     </Popover>
 
                     <MenuItem className={classes.menuItem}>
@@ -121,7 +122,7 @@ export default function SimplePopover() {
                         anchorEl={anchorElAddress}
                         onClose={handleCloseAddress}
                         anchorOrigin={{
-                            vertical:'center',
+                            vertical: 'center',
                             horizontal: 'right',
                         }}
                         transformOrigin={{

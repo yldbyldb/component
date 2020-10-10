@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 position: 'relative',
                 '& span': {
                     position: 'relative',
-                    top: '0.5rem',
+                    top: '0.6rem',
                     color: 'white',
                 }
             }

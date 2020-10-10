@@ -39,6 +39,7 @@ export default function Landmark() {
         setLandmark({ ...landmark, [name]: event.target.checked });
     };
     const { cemetery, petrolStation, mosque, mobileBaseStation, church } = landmark;
+    // console.log('ccc');
 
     return (
         <div className={classes.checkbox}>
