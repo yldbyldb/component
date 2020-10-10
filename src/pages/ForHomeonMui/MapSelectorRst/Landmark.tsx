@@ -4,7 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import { create, rst, stateS } from 'rt-state';
@@ -36,7 +36,7 @@ export const Landmark = create((ctx) => {
 
     return (props) => {
         const classes = useStyles();
-        
+
         return (
             <div className={classes.checkbox}>
                 <FormControl component="fieldset" className={classes.formControl}>
