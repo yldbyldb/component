@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Landmark = create((ctx) => {
-    const data = stateS<{[key:string]:any}>({ cemetery: false, petrolStation: false, mosque: false, mobileBaseStation: false, church: false, });
-    const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const data = stateS<{[key:string]:boolean}>({ cemetery: false, petrolStation: false, mosque: false, mobileBaseStation: false, church: false, });
+    const handleChange = (name: 'cemetery'|'petrolStation'|'mosque'|'mobileBaseStation'|'church') => (event: React.ChangeEvent<HTMLInputElement>) => {
         data[name]=event.target.checked;
         rst.forceUpdate(data);
     };

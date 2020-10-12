@@ -1,12 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -14,27 +9,36 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            margin: '2rem 0',
+            margin: '1rem 0',
         },
         paper: {
             marginRight: theme.spacing(0),
             borderRadius: '1rem',
+            margin: '1rem 0',
+            width: '20rem',
+            padding: '1rem 0',
+            textAlign:'center'
         },
-        table: {
-            minWidth: 250,
-            padding: '1rem 1rem',
-            margin: '1rem 1rem'
+        head: {
+            padding: '2rem 0',
+            flexGrow: 1,
         },
-        tableCell: {
-            border: 'none',
-            padding: '1rem 0.5rem',
+        body: {
+            flexGrow: 1,
+            padding: '0 0 1rem 0',
+
+        },
+        cell: {
+            '& h3':{
+                padding:'0',
+                margin:'0',
+            },
             '& div': {
                 display: 'inline-block',
-                backgroundColor: 'rgb(219,242,253)',
                 width: '2.5rem',
                 height: '2.5rem',
                 borderRadius: '0.5rem',
-                position: 'relative',
+                
                 '& span': {
                     position: 'relative',
                     top: '0.6rem',
@@ -42,9 +46,8 @@ const useStyles = makeStyles((theme: Theme) =>
                 }
             }
         },
+
     }));
-
-
 
 //These numbers come from database, which are the number of suburb in certain price range.
 const areaItem = [51, 11, 1, 22, 53];
@@ -60,28 +63,35 @@ export default function BasicTable() {
     return (
         <div className={classes.wrapper}>
             <Paper className={classes.paper}>
-                <TableContainer>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell className={classes.tableCell} align="center">区域</TableCell>
-                                <TableCell className={classes.tableCell} align="center">别墅中位价</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.area}>
-                                    <TableCell className={classes.tableCell} align="center" component="th" scope="row">
-                                        <div style={{backgroundColor:`${row.color}`}}>
-                                            <span>{row.area}</span>
-                                        </div>
-                                    </TableCell>
-                                    <TableCell className={classes.tableCell} align="center">{row.price}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                <div className={classes.head}>
+                    <Grid container direction="row"
+                        justify="center"
+                        alignItems="center" spacing={5}>
+                        <Grid item xs={4}  className={classes.cell}>
+                            <h3>区域</h3>
+                        </Grid>
+                        <Grid item xs={5}  className={classes.cell}>
+                            <h3>别墅中位价</h3>
+                        </Grid>
+                    </Grid>
+                </div>
+
+                <div className={classes.body}>
+                    {rows.map((row) => (
+                        <Grid container direction="row"
+                            justify="center"
+                            alignItems="center" spacing={4} key={row.area}>
+                            <Grid item xs={4} className={classes.cell}>
+                                <div style={{ backgroundColor: `${row.color}` }}>
+                                    <span>{row.area}</span>
+                                </div>
+                            </Grid>
+                            <Grid item xs={5} className={classes.cell}>
+                                <span>{row.price}</span>
+                            </Grid>
+                        </Grid>
+                    ))}
+                </div>
             </Paper>
         </div>
     );
