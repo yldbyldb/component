@@ -4,7 +4,7 @@ import Popover from '@material-ui/core/Popover';
 import { Paper } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import {Landmark} from './Landmark';
+import { Landmark } from './Landmark';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AddAddress from './AddAddress';
 import { Favorite } from './Favorite';
@@ -52,33 +52,32 @@ const useStyles = makeStyles((theme: Theme) =>
 export const MapSelector = create((ctx) => {
     const data = stateS<{ anchorElLandmark: HTMLElement | null; anchorElAddress: HTMLElement | null }>({ anchorElLandmark: null, anchorElAddress: null, });
     function handleClickLandmark(event: React.MouseEvent<HTMLElement, MouseEvent>) {
-        data.anchorElLandmark = event.currentTarget;
-        rst.forceUpdate(data);
-        console.log(data.anchorElLandmark);
+        data.value.anchorElLandmark = event.currentTarget;
+        data.forceUpdate();
+        console.log(data.value.anchorElLandmark);
     }
     function handleCloseLandmark() {
-        data.anchorElLandmark = null;
-        rst.forceUpdate(data);
+        data.value.anchorElLandmark = null;
+        data.forceUpdate();
     }
 
-    
     function handleClickAddress(event: React.MouseEvent<HTMLElement, MouseEvent>) {
-        data.anchorElAddress = event.currentTarget;
-        rst.forceUpdate(data);
+        data.value.anchorElAddress = event.currentTarget;
+        data.forceUpdate();
     }
     function handleCloseAddress() {
-        data.anchorElAddress = null;
-        rst.forceUpdate(data);
+        data.value.anchorElAddress = null;
+        data.forceUpdate();
     }
 
     return (props) => {
         const classes = useStyles();
-        const openLandmark = Boolean(data.anchorElLandmark);
+        const openLandmark = Boolean(data.value.anchorElLandmark);
         const idLandmark = openLandmark ? 'simple-popover' : undefined;
-        const openAddress = Boolean(data.anchorElAddress);
+        const openAddress = Boolean(data.value.anchorElAddress);
         const idAddress = openAddress ? 'simple-popover' : undefined;
-    
-    
+
+
         console.log(idLandmark);
 
         return (
@@ -95,7 +94,7 @@ export const MapSelector = create((ctx) => {
                             className={classes.popover}
                             id={idLandmark}
                             open={openLandmark}
-                            anchorEl={data.anchorElLandmark}
+                            anchorEl={data.value.anchorElLandmark}
                             onClose={handleCloseLandmark}
                             anchorOrigin={{
                                 vertical: 'top',
@@ -123,7 +122,7 @@ export const MapSelector = create((ctx) => {
                             className={classes.popover}
                             id={idAddress}
                             open={openAddress}
-                            anchorEl={data.anchorElAddress}
+                            anchorEl={data.value.anchorElAddress}
                             onClose={handleCloseAddress}
                             anchorOrigin={{
                                 vertical: 'center',

@@ -78,33 +78,37 @@ const useStyles = makeStyles({
 });
 
 export const MedianPriceRst = create((ctx) => {
-    const data = stateS({ page: 0, rowsPerPage: 10, isMore: false });
+    const state = stateS({ page: 0, rowsPerPage: 10, isMore: false });
 
     function handleChangePage(event: any, newPage: number) {
-        data.page = newPage;
-        rst.forceUpdate(data);
+        state.value.page = newPage;
+        state.forceUpdate();
     }
 
     function handleChangeRowsPerPage(event: any) {
+        const { value: data } = state;
         data.rowsPerPage = event.target.value;
         data.page = 0;
-        rst.forceUpdate(data);
+        state.forceUpdate();
     }
 
     function handleChangeMore() {
+        const { value: data } = state;
         data.isMore = false;
         data.page = 0;
-        rst.forceUpdate(data);
+        state.forceUpdate();
     }
 
     function handleChangeLess() {
+        const { value: data } = state;
         data.isMore = true;
         data.page = 0;
-        rst.forceUpdate(data);
+        state.forceUpdate();
     }
 
     return (props) => {
         const classes = useStyles();
+        const { value: data } = state;
 
         return (
             <Paper className={classes.root} elevation={0}>

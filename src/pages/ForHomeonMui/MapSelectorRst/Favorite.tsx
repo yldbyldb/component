@@ -25,8 +25,8 @@ export const Favorite = create((ctx) => {
 	const data = stateS({ house: false });
 
 	function handleChange( event: React.ChangeEvent<HTMLInputElement>) {
-		data.house = event.target.checked;
-		rst.forceUpdate(data);
+		data.value.house = event.target.checked;
+		data.forceUpdate();
 	}
 
 	return (props) => {
@@ -39,7 +39,7 @@ export const Favorite = create((ctx) => {
 						labelPlacement="start"
 						control={<Checkbox icon={<CircleUnchecked />}
 							checkedIcon={<CircleCheckedFilled />}
-							color="primary" checked={data.house} onChange={handleChange} value="house" />}
+							color="primary" checked={data.value.house} onChange={handleChange} value="house" />}
 						label="房屋收藏"
 					/>
 				</FormGroup>

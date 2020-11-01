@@ -28,11 +28,18 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Landmark = create((ctx) => {
-    const data = stateS<{[key:string]:boolean}>({ cemetery: false, petrolStation: false, mosque: false, mobileBaseStation: false, church: false, });
-    const handleChange = (name: 'cemetery'|'petrolStation'|'mosque'|'mobileBaseStation'|'church') => (event: React.ChangeEvent<HTMLInputElement>) => {
-        data[name]=event.target.checked;
-        rst.forceUpdate(data);
+    const data = stateS<{ [key: string]: boolean }>({ cemetery: false, petrolStation: false, mosque: false, mobileBaseStation: false, church: false, });
+    const handleChange = (name: any) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        data.value[name] = event.target.checked;
+        data.forceUpdate();
     };
+    const marks = [
+        { label: 'Cemetery', name: 'cemetery' },
+        { label: 'Petrol Station', name: 'petrolStation' },
+        { label: 'Mosque', name: 'mosque' },
+        { label: 'Mobile Station', name: 'mobileStation' },
+        { label: 'Church', name: 'church' },
+    ];
 
     return (props) => {
         const classes = useStyles();
@@ -41,52 +48,23 @@ export const Landmark = create((ctx) => {
             <div className={classes.checkbox}>
                 <FormControl component="fieldset" className={classes.formControl}>
                     <FormGroup>
-                        <FormControlLabel
-                            className={classes.label}
-                            labelPlacement="start"
-                            control={<Checkbox icon={<CircleUnchecked />}
-                                checkedIcon={<CircleCheckedFilled />}
-                                color="primary" checked={data.cemetery} onChange={handleChange('cemetery')} value="cemetery" />}
-                            label="墓地"
-                        />
-                        <FormControlLabel
-                            className={classes.label}
-                            labelPlacement="start"
-                            control={<Checkbox icon={<CircleUnchecked />}
-                                checkedIcon={<CircleCheckedFilled />}
-                                color="primary" checked={data.petrolStation} onChange={handleChange('petrolStation')} value="petrolStation" />}
-                            label="加油站"
-                        />
-                        <FormControlLabel
-                            className={classes.label}
-                            labelPlacement="start"
-                            control={
-                                <Checkbox icon={<CircleUnchecked />}
-                                    checkedIcon={<CircleCheckedFilled />}
-                                    color="primary" checked={data.mosque} onChange={handleChange('mosque')} value="mosque" />
-                            }
-                            label="清真寺"
-                        />
-                        <FormControlLabel
-                            className={classes.label}
-                            labelPlacement="start"
-                            control={
-                                <Checkbox icon={<CircleUnchecked />}
-                                    checkedIcon={<CircleCheckedFilled />}
-                                    color="primary" checked={data.mobileBaseStation} onChange={handleChange('mobileBaseStation')} value="mobileBaseStation" />
-                            }
-                            label="移动基站"
-                        />
-                        <FormControlLabel
-                            className={classes.label}
-                            labelPlacement="start"
-                            control={
-                                <Checkbox icon={<CircleUnchecked />}
-                                    checkedIcon={<CircleCheckedFilled />}
-                                    color="primary" checked={data.church} onChange={handleChange('church')} value="church" />
-                            }
-                            label="教堂"
-                        />
+                        {marks.map((mark) => (
+                            <FormControlLabel
+                                className={classes.label}
+                                labelPlacement="start"
+                                control={
+                                    <Checkbox
+                                        icon={<CircleUnchecked />}
+                                        checkedIcon={<CircleCheckedFilled />}
+                                        color="primary"
+                                        checked={data.value[mark.name]}
+                                        onChange={handleChange(mark.name)}
+                                        value={mark.name}
+                                    />
+                                }
+                                label={mark.label}
+                            />
+                        ))}
                     </FormGroup>
                     {/* <FormHelperText>*可以多选</FormHelperText> */}
                 </FormControl>
