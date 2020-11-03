@@ -28,7 +28,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Landmark = create((ctx) => {
-    const data = stateS<{ [key: string]: boolean }>({ cemetery: false, petrolStation: false, mosque: false, mobileBaseStation: false, church: false, });
+    const data = stateS<{ [key: string]: boolean }>({
+        cemetery: false,
+        petrolStation: false,
+        mosque: false,
+        mobileBaseStation: false,
+        church: false,
+    });
     const handleChange = (name: any) => (event: React.ChangeEvent<HTMLInputElement>) => {
         data.value[name] = event.target.checked;
         data.forceUpdate();
