@@ -4,11 +4,11 @@ import Popover from '@material-ui/core/Popover';
 import { Paper } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
-import { Landmark } from './Landmark';
+import { MapCheckBox } from './MapCheckBox';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import AddAddress from './AddAddress';
 import { Favorite } from './Favorite';
-import { create, rst, stateS } from 'rt-state';
+import { create, stateS, state } from 'rt-state';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -50,35 +50,87 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const MapSelector = create((ctx) => {
-    const data = stateS<{ anchorElLandmark: HTMLElement | null; anchorElAddress: HTMLElement | null }>({ anchorElLandmark: null, anchorElAddress: null, });
-    function handleClickLandmark(event: React.MouseEvent<HTMLElement, MouseEvent>) {
-        data.value.anchorElLandmark = event.currentTarget;
-        data.forceUpdate();
-        console.log(data.value.anchorElLandmark);
+    const mapSelectorData = stateS<{ anchorElLandmark: HTMLElement | null; anchorElAddress: HTMLElement | null }>({ anchorElLandmark: null, anchorElAddress: null, });
+    const handleClickLandmark=(event: React.MouseEvent<HTMLElement, MouseEvent>)=>{
+        mapSelectorData.value.anchorElLandmark = event.currentTarget;
+        mapSelectorData.forceUpdate();
+        console.log(mapSelectorData.value.anchorElLandmark);
     }
     function handleCloseLandmark() {
-        data.value.anchorElLandmark = null;
-        data.forceUpdate();
+        mapSelectorData.value.anchorElLandmark = null;
+        mapSelectorData.forceUpdate();
     }
 
-    function handleClickAddress(event: React.MouseEvent<HTMLElement, MouseEvent>) {
-        data.value.anchorElAddress = event.currentTarget;
-        data.forceUpdate();
+    const handleClickAddress=(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        mapSelectorData.value.anchorElAddress = event.currentTarget;
+        mapSelectorData.forceUpdate();
+        console.log(mapSelectorData.value.anchorElAddress);
+
     }
     function handleCloseAddress() {
-        data.value.anchorElAddress = null;
-        data.forceUpdate();
+        mapSelectorData.value.anchorElAddress = null;
+        mapSelectorData.forceUpdate();
     }
+
+
+    const mapSelectorFavorite = stateS<{ [key: string]: boolean }>({ house: false });
+
+    function handleFavoriteChange(event: React.ChangeEvent<HTMLInputElement>) {
+        mapSelectorFavorite.value.house = event.target.checked;
+        mapSelectorFavorite.forceUpdate();
+    }
+
+    const landMarkData = stateS<{ [key: string]: boolean }>({
+        cemetery: false,
+        petrolStation: false,
+        mosque: false,
+        mobileStation: false,
+        church: false,
+    });
+    // const handleLandMarkChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     landMarkData.value[name] = event.target.checked;
+    //     landMarkData.forceUpdate();
+    //     console.log(event.target.checked);
+    //     console.log(name);
+    //     console.log(landMarkData.value[name]);
+    //     isLandMarkChecked(name)
+    // };
+    // const isLandMarkChecked= (name:string)=>{
+    //     return landMarkData.value[name];
+    // };
+    const marks = [
+        { label: 'Cemetery', name: 'cemetery' },
+        { label: 'Petrol Station', name: 'petrolStation' },
+        { label: 'Mosque', name: 'mosque' },
+        { label: 'Mobile Station', name: 'mobileStation' },
+        { label: 'Church', name: 'church' },
+    ];
 
     return (props) => {
         const classes = useStyles();
-        const openLandmark = Boolean(data.value.anchorElLandmark);
+        const openLandmark = Boolean(mapSelectorData.value.anchorElLandmark);
         const idLandmark = openLandmark ? 'simple-popover' : undefined;
-        const openAddress = Boolean(data.value.anchorElAddress);
+        const openAddress = Boolean(mapSelectorData.value.anchorElAddress);
         const idAddress = openAddress ? 'simple-popover' : undefined;
+        // const isLandMarkChecked=(name:string)=>{
+        //     return landMarkData.value[name];
+        // };
+        const handleLandMarkChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+            landMarkData.value[name] = event.target.checked;
+            landMarkData.forceUpdate();
+            console.log(event.target.checked);
+            console.log(name);
+            console.log(landMarkData.value[name]);
+            isLandMarkChecked(name)
+        };
+        const isLandMarkChecked= (name:string)=>{
+            return landMarkData.value[name];
+            
+        };
 
-
-        console.log(idLandmark);
+        // console.log(idLandmark);
+        // console.log(idAddress);
+        // console.log(isLandMarkChecked);
 
         return (
             <div className={classes.wrapper}>
@@ -94,7 +146,7 @@ export const MapSelector = create((ctx) => {
                             className={classes.popover}
                             id={idLandmark}
                             open={openLandmark}
-                            anchorEl={data.value.anchorElLandmark}
+                            anchorEl={mapSelectorData.value.anchorElLandmark}
                             onClose={handleCloseLandmark}
                             anchorOrigin={{
                                 vertical: 'top',
@@ -105,11 +157,24 @@ export const MapSelector = create((ctx) => {
                                 horizontal: 'left',
                             }}
                         >
-                            <Landmark />
+                            <MapCheckBox
+                                // checked={(name:string)=>landMarkData.value[name]}
+                                checked={isLandMarkChecked}
+                                onChange={handleLandMarkChange}
+                                // onChange={(mark: { label: string, name: string }) => (handleLandMarkChange(mark.name))}
+                                value={(name:string) => {return name}}
+                                label={(mark: { label: string, name: string }) => mark.label}
+                                marks={marks}
+                            />
                         </Popover>
 
                         <MenuItem className={classes.menuItem}>
-                            <Favorite />
+                            <Favorite
+                                checked={mapSelectorFavorite.value.house}
+                                onChange={handleFavoriteChange}
+                                value='house'
+                                label='favorite house'
+                            />
                         </MenuItem>
 
                         <MenuItem className={classes.menuItem} onClick={handleClickAddress} aria-describedby={idAddress}>
@@ -122,7 +187,7 @@ export const MapSelector = create((ctx) => {
                             className={classes.popover}
                             id={idAddress}
                             open={openAddress}
-                            anchorEl={data.value.anchorElAddress}
+                            anchorEl={mapSelectorData.value.anchorElAddress}
                             onClose={handleCloseAddress}
                             anchorOrigin={{
                                 vertical: 'center',
